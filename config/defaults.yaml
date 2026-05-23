@@ -1,0 +1,31 @@
+app:
+  name: GridPulse
+  tick_interval_seconds: 5
+  random_seed: 7
+
+grid:
+  mode: networkx
+  zone_count: 8
+  topology_path: data/sample_topology.json
+  profile_path: data/sample_profiles.json
+
+scenario:
+  default: normal
+  renewable_surplus_threshold: 0.72
+  available:
+    - normal
+    - peak
+    - renewable_surplus
+    - fault
+
+ml:
+  forecast_model: random_forest
+  classifier: lightgbm
+  anomaly_detector: isolation_forest
+  use_lstm: false
+
+validation:
+  enable_pandapower: false
+
+references:
+  baseline: OpenEMS

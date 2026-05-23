@@ -1,0 +1,39 @@
+{
+  "nodes": [
+    {"id": "G1", "kind": "generator", "capacity_kw": 720, "renewable": false},
+    {"id": "G2", "kind": "generator", "capacity_kw": 620, "renewable": true},
+    {"id": "B1", "kind": "battery", "capacity_kw": 180, "soc": 0.66},
+    {"id": "B2", "kind": "battery", "capacity_kw": 160, "soc": 0.58},
+    {"id": "S1", "kind": "substation"},
+    {"id": "S2", "kind": "substation"},
+    {"id": "S3", "kind": "substation"},
+    {"id": "S4", "kind": "substation"},
+    {"id": "Z1", "kind": "zone", "base_load_kw": 130, "priority": 2},
+    {"id": "Z2", "kind": "zone", "base_load_kw": 150, "priority": 2},
+    {"id": "Z3", "kind": "zone", "base_load_kw": 190, "priority": 1},
+    {"id": "Z4", "kind": "zone", "base_load_kw": 170, "priority": 2},
+    {"id": "Z5", "kind": "zone", "base_load_kw": 140, "priority": 3},
+    {"id": "Z6", "kind": "zone", "base_load_kw": 165, "priority": 1},
+    {"id": "Z7", "kind": "zone", "base_load_kw": 145, "priority": 3},
+    {"id": "Z8", "kind": "zone", "base_load_kw": 155, "priority": 2}
+  ],
+  "edges": [
+    {"source": "G1", "target": "S1", "capacity_kw": 720, "resistance": 1.0},
+    {"source": "G2", "target": "S4", "capacity_kw": 620, "resistance": 0.9},
+    {"source": "B1", "target": "S2", "capacity_kw": 180, "resistance": 0.4},
+    {"source": "B2", "target": "S3", "capacity_kw": 160, "resistance": 0.4},
+    {"source": "S1", "target": "S2", "capacity_kw": 380, "resistance": 0.8},
+    {"source": "S2", "target": "S3", "capacity_kw": 360, "resistance": 0.9},
+    {"source": "S3", "target": "S4", "capacity_kw": 350, "resistance": 0.8},
+    {"source": "S4", "target": "S1", "capacity_kw": 340, "resistance": 0.9},
+    {"source": "S1", "target": "S3", "capacity_kw": 240, "resistance": 1.2},
+    {"source": "S1", "target": "Z1", "capacity_kw": 160, "resistance": 0.6},
+    {"source": "S1", "target": "Z2", "capacity_kw": 170, "resistance": 0.7},
+    {"source": "S2", "target": "Z3", "capacity_kw": 220, "resistance": 0.7},
+    {"source": "S2", "target": "Z4", "capacity_kw": 190, "resistance": 0.8},
+    {"source": "S3", "target": "Z5", "capacity_kw": 165, "resistance": 0.7},
+    {"source": "S3", "target": "Z6", "capacity_kw": 210, "resistance": 0.8},
+    {"source": "S4", "target": "Z7", "capacity_kw": 175, "resistance": 0.7},
+    {"source": "S4", "target": "Z8", "capacity_kw": 185, "resistance": 0.6}
+  ]
+}
