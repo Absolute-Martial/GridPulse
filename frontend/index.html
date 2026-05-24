@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GridPulse Forecasting Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>GridPulse</h1>
+          <p>Offline forecasting dashboard</p>
+        </div>
+        <nav id="page-nav" class="page-nav"></nav>
+        <button id="refresh-button" class="primary-button full-width">Refresh Data</button>
+      </aside>
+
+      <main class="content">
+        <header class="content-header">
+          <div>
+            <p class="eyebrow">Docker-served web dashboard</p>
+            <h2 id="page-title">Substation Forecast</h2>
+          </div>
+          <div class="header-actions">
+            <button id="generate-button" class="primary-button">Generate AMI History</button>
+          </div>
+        </header>
+
+        <section id="error-banner" class="error-banner hidden"></section>
+        <section id="page-content" class="page-content"></section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

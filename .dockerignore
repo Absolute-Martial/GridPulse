@@ -1,0 +1,9 @@
+.git
+.github
+.pytest_cache
+backend/.pytest_cache
+backend/.venv
+backend/__pycache__
+backend/app/**/__pycache__
+frontend/node_modules
+station-data

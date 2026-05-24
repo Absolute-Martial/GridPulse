@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: gridpulse-backend
+    depends_on:
+      - storage
+    environment:
+      GRIDPULSE_SYNTHETIC_CSV_PATH: /app/data/synthetic/sensor_data.csv
+      GRIDPULSE_FORECAST_MODEL_PATH: /app/data/models/load_forecaster.pkl
+      GRIDPULSE_ANOMALY_MODEL_PATH: /app/data/models/anomaly_detector.pkl
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - ./station-data:/app/data
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: gridpulse-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  storage:
+    image: alpine:3.20
+    container_name: gridpulse-storage
+    command:
+      - /bin/sh
+      - -c
+      - mkdir -p /storage/synthetic /storage/processed /storage/models/offline && tail -f /dev/null
+    restart: unless-stopped
+    volumes:
+      - ./station-data:/storage
