@@ -35,6 +35,25 @@ Optional:
 - `data/forecasting/fingerprints.csv`
 - trained artifacts from `data/models/forecasting/`
 
+Repo templates now provided:
+
+- dataset schema and samples:
+  [kaggle/dataset/README.md](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/README.md)
+- run config:
+  [run_config.json](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/run_config.json)
+- sample feeder dataset:
+  [sample_feeder.csv](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/sample_feeder.csv)
+- sample substation dataset:
+  [sample_substation.csv](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/sample_substation.csv)
+- sample AMI CSV:
+  [sample_ami_history.csv](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/sample_ami_history.csv)
+- sample fingerprint CSV:
+  [sample_fingerprints.csv](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/sample_fingerprints.csv)
+- Kaggle script trainer:
+  [train_forecast.py](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/kernel/train_forecast.py)
+- Kaggle notebook template:
+  [gridpulse_tree_forecast_template.ipynb](/home/lets-smile/Documents/PulseGrid/gridpulse/notebooks/kaggle/gridpulse_tree_forecast_template.ipynb)
+
 ## Kaggle notebook workflow
 
 1. Upload `ami_history.csv` to a Kaggle dataset.
@@ -63,6 +82,16 @@ Optional:
    - `data/models/forecasting/`
    - or `station-data/models/offline/` for offline deployment
 
+The fastest path is:
+
+1. export the local training bundle with
+   [export_training_bundle.sh](/home/lets-smile/Documents/PulseGrid/gridpulse/scripts/kaggle/export_training_bundle.sh)
+2. upload the generated `feeder.csv`, `substation.csv`, `fingerprints.csv`, and `run_config.json`
+3. run either the notebook template or the script template
+4. download the `.pkl` and `.json` outputs
+5. import them with
+   [import_artifacts.sh](/home/lets-smile/Documents/PulseGrid/gridpulse/scripts/kaggle/import_artifacts.sh)
+
 ## Minimal Kaggle training outline
 
 ```python
@@ -77,6 +106,14 @@ history = pd.read_csv("/kaggle/input/gridpulse/ami_history.csv")
 # then export the fitted artifact with pickle.
 ```
 
+For the current repo, use the provided concrete template instead of starting
+from scratch:
+
+- script:
+  [train_forecast.py](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/kernel/train_forecast.py)
+- notebook:
+  [gridpulse_tree_forecast_template.ipynb](/home/lets-smile/Documents/PulseGrid/gridpulse/notebooks/kaggle/gridpulse_tree_forecast_template.ipynb)
+
 ## Artifact handoff back to GridPulse
 
 After Kaggle training:
@@ -87,6 +124,10 @@ After Kaggle training:
 3. For offline station deployment, copy it into:
    - `station-data/models/offline/`
 4. Restart the backend or containers if the runtime is already running.
+
+Async workflow reference:
+
+- [async_workflow.md](/home/lets-smile/Documents/PulseGrid/gridpulse/scripts/kaggle/async_workflow.md)
 
 ## Practical recommendation
 

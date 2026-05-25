@@ -178,7 +178,23 @@ Additional docs:
 - [architecture.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/architecture.md)
 - [api-spec.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/api-spec.md)
 - [data-schema.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/data-schema.md)
+- [backend-operations.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/backend-operations.md)
 - [kaggle-training.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/kaggle-training.md)
+- [kaggle-compute-strategy.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/kaggle-compute-strategy.md)
+
+Kaggle package:
+
+- [kaggle/README.md](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/README.md)
+- [dataset schema and samples](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/dataset/README.md)
+- [training script template](/home/lets-smile/Documents/PulseGrid/gridpulse/kaggle/kernel/train_forecast.py)
+- [training notebook template](/home/lets-smile/Documents/PulseGrid/gridpulse/notebooks/kaggle/gridpulse_tree_forecast_template.ipynb)
+- [async workflow](/home/lets-smile/Documents/PulseGrid/gridpulse/scripts/kaggle/async_workflow.md)
+
+Recommended reading order for operators:
+
+1. [backend-operations.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/backend-operations.md)
+2. [api-spec.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/api-spec.md)
+3. [kaggle-compute-strategy.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/kaggle-compute-strategy.md)
 
 ## Run tests
 

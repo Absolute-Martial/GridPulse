@@ -1,0 +1,5 @@
+entity_type,entity_id,day_of_week,slot_index,fingerprint_mean_kw,fingerprint_p10_kw,fingerprint_p90_kw
+feeder,FD_RES_01,0,41,139.7,130.2,156.8
+feeder,FD_RES_01,0,42,144.3,135.5,161.2
+enterprise,ENT_CEMENT_01,0,43,308.0,295.0,328.0
+substation,SS_KTM_01,0,44,598.0,570.0,640.0

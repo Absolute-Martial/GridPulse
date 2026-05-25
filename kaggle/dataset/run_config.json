@@ -1,0 +1,23 @@
+{
+  "dataset_name": "gridpulse-forecasting-inputs",
+  "default_model": "tree",
+  "default_fingerprints_file": "fingerprints.csv",
+  "jobs": [
+    {
+      "job_name": "feeder_fd_res_01_1h",
+      "dataset_file": "feeder.csv",
+      "entity_type": "feeder",
+      "entity_id": "FD_RES_01",
+      "horizon": "1h",
+      "output_name": "tree_feeder_FD_RES_01_1h"
+    },
+    {
+      "job_name": "substation_ss_ktm_01_24h",
+      "dataset_file": "substation.csv",
+      "entity_type": "substation",
+      "entity_id": "SS_KTM_01",
+      "horizon": "24h",
+      "output_name": "tree_substation_SS_KTM_01_24h"
+    }
+  ]
+}
