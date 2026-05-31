@@ -37,6 +37,11 @@ kaggle datasets version -p ./kaggle/dataset -m "updated forecasting inputs"
 kaggle kernels push -p ./kaggle/kernel --timeout 3600
 ```
 
+The kernel metadata uses:
+
+- id: `susankyasha/pulsegrid`
+- title: `PulseGrid`
+
 If you want a specific job from `run_config.json`, set:
 
 ```bash
@@ -46,13 +51,13 @@ export GRIDPULSE_JOB_NAME=feeder_fd_res_01_1h
 ## 5. Poll job status
 
 ```bash
-kaggle kernels status your-kaggle-username/gridpulse-forecast-train
+kaggle kernels status susankyasha/pulsegrid
 ```
 
 ## 6. Download outputs
 
 ```bash
-kaggle kernels output your-kaggle-username/gridpulse-forecast-train -p ./kaggle/output -o
+kaggle kernels output susankyasha/pulsegrid -p ./kaggle/output -o
 ```
 
 ## 7. Import artifacts locally
@@ -65,3 +70,23 @@ kaggle kernels output your-kaggle-username/gridpulse-forecast-train -p ./kaggle/
 
 The backend keeps serving local forecasts from the most recent local artifact.
 It must not wait for Kaggle to finish.
+
+## Continuous training cycle
+
+To append a rolling synthetic AMI slice, retrain locally, and refresh the Kaggle
+dataset bundle:
+
+```bash
+./scripts/kaggle/continuous_training_cycle.sh
+```
+
+Useful overrides:
+
+```bash
+GRIDPULSE_CONTINUOUS_STEPS=96
+GRIDPULSE_CONTINUOUS_SEED=31
+GRIDPULSE_CONTINUOUS_HORIZON=1h
+GRIDPULSE_CONTINUOUS_ENTITY_TYPE=feeder
+GRIDPULSE_CONTINUOUS_ENTITY_ID=FD_RES_01
+./scripts/kaggle/continuous_training_cycle.sh
+```

@@ -9,7 +9,7 @@ Expected upload files:
 - `substation.csv`
 - `fingerprints.csv`
 - `run_config.json`
-- `dataset-metadata.json`
+- `datasets-metadata.json`
 
 Included examples:
 

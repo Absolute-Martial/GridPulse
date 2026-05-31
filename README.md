@@ -13,6 +13,8 @@ dashboard.
 - Target-aware forecasting for substations, feeders, and enterprise lines
 - `fingerprint_baseline` and `tree` forecast models
 - Tree forecast explanation with SHAP fallback
+- Self-contained Streamlit Cloud demo that loads the packaged `.pkl` model,
+  simulates a live 15-minute AMI stream, and renders p10/p90 bands
 - Docker-served static forecasting dashboard
 
 Inactive for this phase:
@@ -58,6 +60,20 @@ cd gridpulse
 docker compose up --build
 ```
 
+## Run the Streamlit Cloud demo locally
+
+The Streamlit app is self-contained and does not call the backend API. It loads
+the packaged forecast artifact from `data/models/forecasting/` and simulates a
+live 15-minute AMI stream in-session.
+
+```bash
+cd gridpulse
+streamlit run frontend/streamlit_app.py
+```
+
+The repository-level `requirements.txt` is the dependency file to use for
+Streamlit Cloud.
+
 ## GitHub image build
 
 The repository includes [docker-image.yml](/home/lets-smile/Documents/PulseGrid/gridpulse/.github/workflows/docker-image.yml).
@@ -70,6 +86,7 @@ Services:
 
 - Backend API: `http://127.0.0.1:8000`
 - Dashboard: `http://127.0.0.1:8080`
+- Streamlit demo: `streamlit run frontend/streamlit_app.py`
 
 ## Current forecasting endpoints
 
@@ -178,6 +195,7 @@ Additional docs:
 - [architecture.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/architecture.md)
 - [api-spec.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/api-spec.md)
 - [data-schema.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/data-schema.md)
+- [research-reference.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/research-reference.md)
 - [backend-operations.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/backend-operations.md)
 - [kaggle-training.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/kaggle-training.md)
 - [kaggle-compute-strategy.md](/home/lets-smile/Documents/PulseGrid/gridpulse/docs/kaggle-compute-strategy.md)

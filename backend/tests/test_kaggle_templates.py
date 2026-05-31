@@ -52,10 +52,27 @@ def test_kaggle_kernel_metadata_template_has_required_fields() -> None:
     ):
         assert required_field in payload
 
+    code_file = REPO_ROOT / "kaggle" / "kernel" / payload["code_file"]
+    assert code_file.exists()
+
 
 def test_kaggle_notebook_template_exists() -> None:
     notebook_path = REPO_ROOT / "notebooks" / "kaggle" / "gridpulse_tree_forecast_template.ipynb"
     assert notebook_path.exists()
+
+
+def test_kaggle_kernel_notebook_is_self_contained() -> None:
+    notebook_path = REPO_ROOT / "kaggle" / "kernel" / "pulsegrid.ipynb"
+    payload = json.loads(notebook_path.read_text())
+    source = "\n".join(
+        "".join(cell.get("source", []))
+        for cell in payload["cells"]
+        if cell.get("cell_type") == "code"
+    )
+
+    assert "RandomForestRegressor" in source
+    assert "runpy" not in source
+    assert "train_forecast.py was not found" not in source
 
 
 def test_kaggle_run_config_exists_and_has_jobs() -> None:

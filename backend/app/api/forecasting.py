@@ -8,6 +8,11 @@ import pandas as pd
 from fastapi import APIRouter, HTTPException, Query
 
 from app.core.config import get_settings
+from app.forecasting.continuous_training import (
+    generate_continuous_history,
+    get_continuous_training_status,
+    run_continuous_training_cycle,
+)
 from app.forecasting.feeder_fingerprint import build_fingerprint_database
 from app.forecasting.fingerprint_baseline import FingerprintBaselineForecaster
 from app.forecasting.response_formatter import build_forecast_response
@@ -166,6 +171,42 @@ async def evaluate_forecast(
 @router.get("/forecast/models")
 async def forecast_models() -> dict:
     return {"status": "ok", "models": list(SUPPORTED_MODELS)}
+
+
+@router.post("/forecast/continuous/generate")
+async def generate_continuous_forecast_history(
+    steps: int = Query(default=4, ge=1),
+    seed: int | None = Query(default=None),
+) -> dict:
+    return generate_continuous_history(steps=steps, seed=seed)
+
+
+@router.post("/forecast/continuous/train-cycle")
+async def run_continuous_forecast_train_cycle(
+    steps: int = Query(default=4, ge=1),
+    seed: int | None = Query(default=None),
+    model: str = Query(default="tree", min_length=1),
+    horizon: str = Query(default="1h", min_length=2),
+    entity_type: str = Query(default="feeder", min_length=1),
+    entity_id: str = Query(default="FD_RES_01", min_length=1),
+) -> dict:
+    _normalize_horizon_or_raise(horizon)
+    try:
+        return run_continuous_training_cycle(
+            steps=steps,
+            seed=seed,
+            model=model,
+            horizon=horizon,
+            entity_type=entity_type,
+            entity_id=entity_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail={"error": "continuous_training_error", "message": str(exc)}) from exc
+
+
+@router.get("/forecast/continuous/status")
+async def continuous_forecast_status() -> dict:
+    return get_continuous_training_status()
 
 
 def _run_forecast_response(entity_type: str, entity_id: str, horizon: str, model: str) -> dict:

@@ -57,6 +57,27 @@ Inactive in this phase:
 Those older modules may still exist in the repo, but they are not part of the
 active forecasting operating flow.
 
+## Streamlit Cloud demo
+
+GridPulse also includes a self-contained Streamlit demo for the current
+hackathon setup. It loads the packaged `.pkl` artifact from
+`data/models/forecasting/`, simulates a live 15-minute AMI stream, and renders
+the forecast with p10/p90 bands.
+
+Run it locally with:
+
+```bash
+cd gridpulse
+streamlit run frontend/streamlit_app.py
+```
+
+The Streamlit demo does not call the backend API. It is intended for Streamlit
+Cloud deployment with the repository-level `requirements.txt`.
+
+Research reference:
+
+- [research-reference.md](./research-reference.md)
+
 ## Recommended operator flow
 
 Run the backend in this order:

@@ -29,6 +29,7 @@ class TreeForecaster(BaseForecaster):
     random_state: int = 7
     n_estimators: int = 300
     min_samples_leaf: int = 2
+    n_jobs: int = -1
     artifact: dict[str, Any] | None = field(default=None, init=False)
 
     def train(
@@ -58,7 +59,7 @@ class TreeForecaster(BaseForecaster):
             n_estimators=self.n_estimators,
             min_samples_leaf=self.min_samples_leaf,
             random_state=self.random_state,
-            n_jobs=-1,
+            n_jobs=self.n_jobs,
         )
         estimator.fit(x_train, y_train)
         test_predictions = estimator.predict(x_test)

@@ -2,3 +2,10 @@
 __pycache__/
 .pytest_cache/
 *.pyc
+data/forecasting/
+kaggle/output/
+kaggle/output-notebook-test/
+kaggle/dataset/ami_history.csv
+kaggle/dataset/feeder.csv
+kaggle/dataset/substation.csv
+kaggle/dataset/fingerprints.csv

@@ -1,0 +1,20 @@
+{
+  "job": {
+    "job_name": "feeder_fd_res_01_1h",
+    "dataset_file": "feeder.csv",
+    "entity_type": "feeder",
+    "entity_id": "FD_RES_01",
+    "horizon": "1h",
+    "output_name": "tree_feeder_FD_RES_01_1h"
+  },
+  "train_rows": 3376,
+  "test_rows": 844,
+  "metrics": {
+    "mae": 7.600088,
+    "rmse": 9.631715,
+    "mape": 2.497179,
+    "r2": 0.959446,
+    "peak_time_error": 3,
+    "peak_load_error": 14.091775
+  }
+}

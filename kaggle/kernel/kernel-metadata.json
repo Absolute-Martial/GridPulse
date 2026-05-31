@@ -1,14 +1,14 @@
 {
-  "id": "your-kaggle-username/gridpulse-forecast-train",
-  "title": "GridPulse Forecast Train",
-  "code_file": "train_forecast.py",
+  "id": "susankyasha/pulsegrid",
+  "title": "PulseGrid",
+  "code_file": "pulsegrid.ipynb",
   "language": "python",
-  "kernel_type": "script",
+  "kernel_type": "notebook",
   "is_private": true,
   "enable_gpu": false,
   "enable_internet": false,
   "dataset_sources": [
-    "your-kaggle-username/gridpulse-forecasting-inputs"
+    "susankyasha/gridpulse-forecasting-inputs"
   ],
   "competition_sources": [],
   "kernel_sources": []
