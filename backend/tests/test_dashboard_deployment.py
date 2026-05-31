@@ -20,21 +20,26 @@ def test_dashboard_docker_assets_exist() -> None:
 def test_streamlit_dashboard_is_present_and_self_contained() -> None:
     repo_root = Path(__file__).resolve().parents[2]
 
+    dashboard_app = repo_root / "dashboard" / "app.py"
     streamlit_app = repo_root / "frontend" / "streamlit_app.py"
     streamlit_runtime = repo_root / "frontend" / "streamlit_runtime.py"
     requirements = repo_root / "requirements.txt"
     research_reference = repo_root / "docs" / "research-reference.md"
 
+    assert dashboard_app.exists()
     assert streamlit_app.exists()
     assert streamlit_runtime.exists()
     assert requirements.exists()
     assert research_reference.exists()
 
+    dashboard_source = dashboard_app.read_text(encoding="utf-8")
     app_source = streamlit_app.read_text(encoding="utf-8")
     runtime_source = streamlit_runtime.read_text(encoding="utf-8")
     requirements_text = requirements.read_text(encoding="utf-8")
     research_text = research_reference.read_text(encoding="utf-8")
 
+    assert "streamlit_app" in dashboard_source
+    assert "main()" in dashboard_source
     assert "streamlit_autorefresh" in app_source
     assert "load_artifact" in app_source
     assert "Actual generated load" in app_source

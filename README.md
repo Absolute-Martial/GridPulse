@@ -74,6 +74,12 @@ streamlit run frontend/streamlit_app.py
 The repository-level `requirements.txt` is the dependency file to use for
 Streamlit Cloud.
 
+For Streamlit Cloud, point the app entrypoint to:
+
+```text
+dashboard/app.py
+```
+
 ## GitHub image build
 
 The repository includes [docker-image.yml](/home/lets-smile/Documents/PulseGrid/gridpulse/.github/workflows/docker-image.yml).
